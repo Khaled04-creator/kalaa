@@ -1,1 +1,215 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kalaa Snack & Grill — Food Menu ($)</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e0e0f; --bg2:#171718; --wood1:#141415; --wood2:#101011;
+    --red:#ef2b2d; --text:#ffffff; --muted:#c9c9c9;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; color:var(--text);
+    font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    background:
+      repeating-linear-gradient(90deg, var(--wood1), var(--wood1) 3px, var(--wood2) 3px, var(--wood2) 6px),
+      linear-gradient(#0b0b0c,#0b0b0c);
+  }
+  .menu{max-width:1000px;margin:32px auto 48px;padding:24px 20px 36px;position:relative}
+  .menu::before{content:"";position:absolute;inset:10px;--size:64px;background:
+      radial-gradient(circle at left top, var(--red) 0 4px, transparent 5px) left 0 top 0/var(--size) 6px repeat-x,
+      radial-gradient(circle at left top, var(--red) 0 4px, transparent 5px) left 0 top 0/6px var(--size) repeat-y,
+      radial-gradient(circle at right top, var(--red) 0 4px, transparent 5px) right 0 top 0/var(--size) 6px repeat-x,
+      radial-gradient(circle at right top, var(--red) 0 4px, transparent 5px) right 0 top 0/6px var(--size) repeat-y;
+    opacity:.7;padding:18px;border:solid 0 transparent;mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)}
+  .brand{display:flex;align-items:center;justify-content:center}
+  .logo{width:54px;height:54px;background:var(--red);border-radius:10px;box-shadow:0 0 0 4px #fff inset, 0 6px 18px rgba(0,0,0,.35);position:relative}
+  .logo-img {
+  width:130px;    /* adjust as needed */
+  height:auto;   /* keeps proportions */
+  display:block;
+  margin:0 auto;
+}
+  .logo:before{content:"";position:absolute;inset:8px;background:linear-gradient(#0000,#0002),repeating-linear-gradient(90deg,#fff 0 4px,#0000 4px 8px);border-radius:6px;opacity:.9}
+  .title{text-align:center;margin-top:10px}
+  .title .kalaa,.title .food{font-family:"Bebas Neue",system-ui,sans-serif;letter-spacing:2px}
+  .title .kalaa{font-size:72px;line-height:.9;text-shadow:0 4px 0 #000, 0 10px 24px rgba(0,0,0,.7)}
+  .title .food{font-size:72px;color:var(--red);margin-top:-4px}
+  .subtitle{text-align:center;font-weight:700;font-size:13px;letter-spacing:2px;margin-top:6px;opacity:.9}
+  .hero{margin:24px auto 6px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:860px}
+  .photo{aspect-ratio:1/1;border-radius:50%;position:relative;overflow:hidden;background:#222;
+    box-shadow:0 0 0 6px var(--red), 0 0 0 10px #000 inset, 0 12px 30px rgba(0,0,0,.6)}
+  .photo img{width:100%;height:100%;object-fit:cover;display:block}
+  .photo:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%, #ffffff40, #0000 40%),linear-gradient(#0000,#0006 70%)}
+  .chip{display:inline-block;background:var(--red);color:#fff;font-weight:800;letter-spacing:.5px;padding:10px 18px;border-radius:999px;margin:22px 0 12px;font-size:18px;box-shadow:0 8px 22px rgba(239,43,45,.35)}
+  .grid{display:grid;gap:16px}
+  .grid.cols-1{grid-template-columns:1fr}
+  ul.menu-list{list-style:none;margin:0;padding:0 6px}
+  li.item{display:flex;gap:10px;align-items:baseline;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+  .name{flex:1 1 auto;font-weight:500;font-size:15px;position:relative;padding-right:10px}
+  .price{flex:none;min-width:94px;text-align:right;color:#ffefe9;font-weight:700}
+  .name:after{content:"....................................................................................................";position:absolute;left:0;right:110px;top:50%;transform:translateY(-50%);color:#ffffff22;overflow:hidden;white-space:nowrap}
+  .name > span{position:relative;z-index:1;padding-right:.4rem;background:transparent}
+  .row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px;margin-top:6px}
+  .spacer{height:20px}
+  @media (max-width:1024px){.title .kalaa,.title .food{font-size:60px}.row{grid-template-columns:1fr 1fr}}
+  @media (max-width:720px){.hero{grid-template-columns:1fr;max-width:420px}.row{grid-template-columns:1fr}.title .kalaa,.title .food{font-size:46px}}
+</style>
+</head>
+<body>
+  <main class="menu">
+    <div class="brand"><img src="kalaa.png" alt="Kalaa Logo" class="logo-img"></div>
+    <div class="title">
+      <div class="kalaa">KALAA</div>
+      <div class="food">FOOD MENU</div>
+      <div class="subtitle">SNACK &amp; GRILL</div>
+    </div>
+
+    <!--<section class="hero">
+      <div class="photo"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200" alt=""></div>
+      <div class="photo"><img src="https://images.unsplash.com/photo-1550317138-10000687a72b?q=80&w=1200" alt=""></div>
+      <div class="photo"><img src="https://tse2.mm.bing.net/th/id/OIP.BrfjKnJpnPqoBoSZ-qaOzgHaEK?pid=Api&P=0&h=220" alt=""></div>
+    </section>-->
+    <section class="hero">
+      <div class="photo"><img src="food2.jpeg" alt="Burger1"></div>
+      <div class="photo"><img src="food1.jpeg" alt="Burger2"></div>
+      <div class="photo"><img src="food3.jpeg" alt="Sandwiches"></div>
+    </section>
+
+    <!-- ===== Top row: Appetizers / Snack & Grill / Burger ===== -->
+    <section class="row">
+      <!-- Appetizers -->
+      <div>
+        <span class="chip">Appetizers</span>
+        <div class="grid cols-1">
+          <ul class="menu-list">
+            <li class="item"><div class="name"><span>Hommos</span></div><div class="price">$3.5</div></li>
+            <li class="item"><div class="name"><span>French Fries</span></div><div class="price">$2.5</div></li>
+            <li class="item"><div class="name"><span>Box of French Fries</span></div><div class="price">$4.5</div></li>
+            <li class="item"><div class="name"><span>Coleslaw Salad</span></div><div class="price">$1.66</div></li>
+            <li class="item"><div class="name"><span>Onion Rings</span></div><div class="price">$3.5</div></li>
+            <li class="item"><div class="name"><span>Mozzarella Sticks</span></div><div class="price">$3.5</div></li>
+            <li class="item"><div class="name"><span>Wedges Potato</span></div><div class="price">$3.5</div></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Snack & Grill -->
+      <div>
+        <span class="chip">Snack &amp; Grill</span>
+        <div class="grid cols-1">
+          <ul class="menu-list">
+            <li class="item"><div class="name"><span>Francisco</span></div><div class="price">$5</div></li>
+            <li class="item"><div class="name"><span>Chicken Sub</span></div><div class="price">$5</div></li>
+            <li class="item"><div class="name"><span>Fajita</span></div><div class="price">$6</div></li>
+            <li class="item"><div class="name"><span>Tawouk</span></div><div class="price">$4.5</div></li>
+            <li class="item"><div class="name"><span>Rosto</span></div><div class="price">$6</div></li>
+            <li class="item"><div class="name"><span>Philadelphia</span></div><div class="price">$6</div></li>
+            <li class="item"><div class="name"><span>Kalaa Chicken</span></div><div class="price">$6</div></li>
+            <li class="item"><div class="name"><span>Kalaa Steak</span></div><div class="price">$6</div></li>
+            <li class="item"><div class="name"><span>Mushroom Steak</span></div><div class="price">$6</div></li>
+            <li class="item"><div class="name"><span>Escalope</span></div><div class="price">$4.5</div></li>
+            <li class="item"><div class="name"><span>Crispy</span></div><div class="price">$4.5</div></li>
+            <li class="item"><div class="name"><span>Crab sandwich</span></div><div class="price">$4.5</div></li>
+            <li class="item"><div class="name"><span>Special Francisco</span></div><div class="price">$6</div></li>
+            <li class="item"><div class="name"><span>Spicy sandwich</span></div><div class="price">$5</div></li>
+            <li class="item"><div class="name"><span>Dynamite wrap</span></div><div class="price">$6</div></li>
+            <li class="item"><div class="name"><span>Pesto wrap</span></div><div class="price">$6</div></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Burger -->
+      <div>
+        <span class="chip">Burger</span>
+        <div class="grid cols-1">
+          <ul class="menu-list">
+            <li class="item"><div class="name"><span>Lebanese</span></div><div class="price">$5</div></li>
+            <li class="item"><div class="name"><span>American</span></div><div class="price">$5</div></li>
+            <li class="item"><div class="name"><span>Cheese</span></div><div class="price">$5</div></li>
+            <li class="item"><div class="name"><span>Chicken</span></div><div class="price">$4.5</div></li>
+            <li class="item"><div class="name"><span>Zinger</span></div><div class="price">$4.5</div></li>
+            <li class="item"><div class="name"><span>Mozzarella</span></div><div class="price">$6</div></li>
+            <li class="item"><div class="name"><span>Kalaa</span></div><div class="price">$6</div></li>
+            <li class="item"><div class="name"><span>Escalope</span></div><div class="price">$4.5</div></li>
+            <li class="item"><div class="name"><span>Mushroom</span></div><div class="price">$5</div></li>
+            <li class="item"><div class="name"><span>Fish</span></div><div class="price">$4.5</div></li>
+            <li class="item"><div class="name"><span>Mozarella Chicken Burger</span></div><div class="price">$6</div></li>
+            <li class="item"><div class="name"><span>Alfredo Burger</span></div><div class="price">$5</div></li>
+            <li class="item"><div class="name"><span>BBQ Burger</span></div><div class="price">$6</div></li>
+            <li class="item"><div class="name"><span>Smoke Burger</span></div><div class="price">$4.5</div></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Bottom row: Plates / Farouj / Drinks ===== -->
+    <section class="row">
+      <!-- Plates -->
+      <div>
+        <span class="chip">Plates</span>
+        <div class="grid cols-1">
+          <ul class="menu-list">
+            <li class="item"><div class="name"><span>Crispy plate</span></div><div class="price">$8</div></li>
+            <li class="item"><div class="name"><span>Escalope plate</span></div><div class="price">$7</div></li>
+            <li class="item"><div class="name"><span>Nuggets plate</span></div><div class="price">$6</div></li>
+            <li class="item"><div class="name"><span>Chicken Breast plate</span></div><div class="price">$8</div></li>
+            <li class="item"><div class="name"><span>Kalaa chicken plate</span></div><div class="price">$8</div></li>
+            <li class="item"><div class="name"><span>Mushroom burger plate</span></div><div class="price">$8</div></li>
+            <li class="item"><div class="name"><span>Fish burger plate</span></div><div class="price">$6</div></li>
+            <li class="item"><div class="name"><span>Lebanese burger plate</span></div><div class="price">$7</div></li>
+            <li class="item"><div class="name"><span>American burger plate</span></div><div class="price">$7</div></li>
+            <li class="item"><div class="name"><span>Cheese burger plate</span></div><div class="price">$7</div></li>
+            <li class="item"><div class="name"><span>Chicken burger plate</span></div><div class="price">$6</div></li>
+            <li class="item"><div class="name"><span>Zinger burger plate</span></div><div class="price">$7</div></li>
+            <li class="item"><div class="name"><span>Mozzarella burger plate</span></div><div class="price">$7</div></li>
+            <li class="item"><div class="name"><span>Philadelphia plate</span></div><div class="price">$8</div></li>
+            <li class="item"><div class="name"><span>Francisco plate</span></div><div class="price">$8</div></li>
+            <li class="item"><div class="name"><span>Chicken Sub plate</span></div><div class="price">$8</div></li>
+            <li class="item"><div class="name"><span>Fajita plate</span></div><div class="price">$8</div></li>
+            <li class="item"><div class="name"><span>Tawouk plate</span></div><div class="price">$7</div></li>
+            <li class="item"><div class="name"><span>Rosto plate</span></div><div class="price">$8</div></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Farouj -->
+      <div>
+        <span class="chip">Farouj</span>
+        <div class="grid cols-1">
+          <ul class="menu-list">
+            <li class="item"><div class="name"><span>Farrouj Fahem</span></div><div class="price">$11</div></li>
+            <li class="item"><div class="name"><span>½ Farrouj Fahem</span></div><div class="price">$6</div></li>
+            <li class="item"><div class="name"><span>Gaz Farrouj</span></div><div class="price">$10</div></li>
+            <li class="item"><div class="name"><span>½ Gaz Farrouj</span></div><div class="price">$6</div></li>
+            <li class="item"><div class="name"><span>Chicken wings</span></div><div class="price">$6</div></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Drinks -->
+      <div>
+        <span class="chip">Drinks</span>
+        <div class="grid cols-1">
+          <ul class="menu-list">
+            <li class="item"><div class="name"><span>Pepsi</span></div><div class="price">$1.1</div></li>
+            <li class="item"><div class="name"><span>Diet Pepsi</span></div><div class="price">$1.1</div></li>
+            <li class="item"><div class="name"><span>7up</span></div><div class="price">$1.1</div></li>
+            <li class="item"><div class="name"><span>Diet 7up</span></div><div class="price">$1.1</div></li>
+            <li class="item"><div class="name"><span>Mirinda</span></div><div class="price">$1.1</div></li>
+            <li class="item"><div class="name"><span>Laban Iran</span></div><div class="price">$1.1</div></li>
+            <li class="item"><div class="name"><span>Water</span></div><div class="price">$0.35</div></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="spacer"></div>
+  </main>
+</body>
+</html>
